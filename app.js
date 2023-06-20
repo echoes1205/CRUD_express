@@ -82,9 +82,6 @@ app.post('usuarios', (req, res, next) => {
   });
 });
 
-app.post('registro', (req, res, next) => {
-  const { user, password } = req.body;
-  console.log("dsdsd")
-});
 
 module.exports = app;
+
