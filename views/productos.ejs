@@ -1,0 +1,33 @@
+<%- include ('layouts/header.ejs') -%>
+
+<div class="container">
+  <h1><%= title %></h1>
+  <!-- leer la info de la base de datos-->
+  <div class="row">
+    <% for(var i = 0; i<Libros.length; i++) { %> 
+
+
+    
+    <div class="col-sm-3">
+      <div class="card">
+        <img height="350" src="<%=Libros[i].imagen%>" class="card-img-top" alt="bonsai"  >
+
+        <div class="card-body">
+
+            <h5 class="card-title"><%=Libros[i].titulo %></h5>
+            <p class="card-text"><%=Libros[i].descripcion %>
+            </p>
+            <p class="card-text">Precio: $ <%= Libros[i].precio %>
+            </p>
+          <a href="#" class="btn btn-primary">Comprar</a>
+        </div>
+      </div>
+    </div>
+    
+  <% } %>
+</div>
+
+
+
+
+<%- include ('layouts/footer.ejs') -%>

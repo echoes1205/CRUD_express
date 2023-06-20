@@ -1,0 +1,20 @@
+<%- include ('layouts/header.ejs') -%>
+
+<div class="container">
+  <h1><%= title %></h1>
+  <!-- leer la info de la base de datos-->
+
+  <h1>Registro de usuario</h1>
+  <form method="POST" action="/reg">
+    <label for="user">Usuario:</label>
+    <input type="text" id="user" name="user" required><br>
+
+    <label for="password">Contraseña:</label>
+    <input type="password" id="password" name="password" required><br>
+
+    <button type="submit">Registrarse</button>
+  </form>
+
+
+
+<%- include ('layouts/footer.ejs') -%>
