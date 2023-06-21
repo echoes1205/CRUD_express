@@ -4,30 +4,90 @@
   <h1><%= title %></h1>
   <!-- leer la info de la base de datos-->
   <div class="row">
-    <% for(var i = 0; i<Libros.length; i++) { %> 
+    <% for(var i = 0; i<Libros.length; i++) { %>
 
 
-    
+
     <div class="col-sm-3">
       <div class="card">
-        <img height="350" src="<%=Libros[i].imagen%>" class="card-img-top" alt="bonsai"  >
+        <img height="350" src="<%=Libros[i].imagen%>" class="card-img-top" alt="bonsai">
 
         <div class="card-body">
 
-            <h5 class="card-title"><%=Libros[i].titulo %></h5>
-            <p class="card-text"><%=Libros[i].descripcion %>
-            </p>
-            <p class="card-text">Precio: $ <%= Libros[i].precio %>
-            </p>
+          <h5 class="card-title"><%=Libros[i].titulo %></h5>
+          <p class="card-text"><%=Libros[i].descripcion %>
+          </p>
+          <p class="card-text">Precio: $ <%= Libros[i].precio %>
+          </p>
+          <p class="card-text">ID: <%= Libros[i].ID %>
+          </p>
+
           <a href="#" class="btn btn-primary">Comprar</a>
         </div>
       </div>
     </div>
-    
-  <% } %>
+
+    <% } %>
+  </div>
+
+  <div class="formularios">
+
+  <h1>Agregar producto</h1>
+  <form method="POST" action="productos/agregar">
+    <div class="mb-3">
+      <label class="form-label" for="user">Titulo</label>
+      <input class="form-control" type="text" id="titulo" name="titulo" required><br>
+
+      <label class="form-label" for="imagen">Imagen:</label>
+      <input class="form-control" type="url" id="imagen" name="imagen" required><br>
+
+      <label class="form-label" for="descripcion">Descripcion:</label>
+      <input class="form-control" type="text" id="descripcion" name="descripcion" required><br>
+
+      <label class="form-label" for="precio">Precio:</label>
+      <input class="form-control" type="number" id="precio" name="precio" required><br>
+
+      <button class="btn btn-success" type="submit">Agregar</button>
+    </div>
+  </form>
+
+  <h1>Eliminar producto</h1>
+  <form method="POST" action="productos/delete">
+    <div class="mb-3">
+      <label class="form-label" for="ID">ID</label>
+      <input type="number" class="form-control" id="ID" name="ID" required><br>
+      <button class="btn btn-danger" type="submit" name="delete">Eliminar</button>
+    </div>
+  </form>
+
+  <h1>Actualizar producto</h1>
+  <form method="POST" action="productos/actualizar">
+    <div class="mb-3">
+      <label for="user" class="form-label">Titulo</label>
+      <input type="text" class="form-control" id="titulo" name="titulo" required><br>
+    </div>
+
+    <div class="mb-3">
+      <label for="imagen" class="form-label">Imagen:</label>
+      <input type="url" class="form-control" id="imagen" name="imagen" required><br>
+    </div>
+
+    <div class="mb-3">
+      <label for="descripcion" class="form-label">Descripcion:</label>
+      <input type="text" class="form-control" id="descripcion" name="descripcion" required><br>
+    </div>
+
+    <div class="mb-3">
+      <label for="precio" class="form-label">Precio:</label>
+      <input type="number" class="form-control" id="precio" name="precio" required><br>
+    </div>
+
+    <div class="mb-3">
+      <label for="ID" class="form-label">ID</label>
+      <input type="number" class="form-control" id="ID" name="ID" required><br>
+    </div>
+    <button class="btn btn-primary" type="submit">Actualizar</button>
+  </form>
 </div>
 
-
-
-
-<%- include ('layouts/footer.ejs') -%>
+  <%- include ('layouts/footer.ejs') -%>

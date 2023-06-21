@@ -30,7 +30,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/productos', productosRouter);
 app.use('/login', loginRouter);
-app.use('/registro', registroRouter);
+//app.use('/registro', registroRouter);
 
 
 // catch 404 and forward to error handler
@@ -54,31 +54,84 @@ app.use(function(err, req, res, next) {
 //gpt
 
 // Obtener todos los registros
-app.get('usuarios', (req, res, next) => {
-  const query = 'SELECT * FROM usuarios';
-  db.query(query, (error, resultado) => {
-    if (error) throw error;
-    res.json(resultado);
-  });
-});
+// app.get('usuarios', (req, res, next) => {
+//   const query = 'SELECT * FROM usuarios';
+//   db.query(query, (error, resultado) => {
+//     if (error) throw error;
+//     res.json(resultado);
+//   });
+// });
 
-// Obtener un registro por ID
-app.get('usuarios/:id', (req, res, next) => {
+// Agregar un nuevo registro de usuario
+// app.post('usuarios', (req, res, next) => {
+//   const { user, password } = req.body;
+//   const query = 'INSERT INTO usuarios (user, password) VALUES (?, ?)';
+//   db.query(query, [user, password], (error, results) => {
+//     if (error) throw error;
+//     res.send('Registro agregado correctamente.');
+//   });
+// });
+
+//eliminar
+// app.delete('tbproductos:id', (req, res, next) => {
+//   const { ID } = req.body;
+//   const query = 'DELETE FROM tbproductos WHERE ID = ?';
+//   db.query(query, [ID], (error, results) => {
+//     if (error) throw error;
+//     res.send('Registro eliminado');
+//   });
+// });
+
+//actualizar
+
+// app.put('tbproductos', (req, res, next) => {
+//   const id = req.params.id;
+//   const query = 'DELETE FROM tbproductos WHERE ID = ?';
+//   db.query(query, [ID], (error, results) => {
+//     if (error) throw error;
+//     res.send('Registro eliminado correctamente.');
+//   });
+// });
+
+// app.put('tbproductos', (req, res, next) => {
+//   const { titulo, imagen, descripcion, precio } = req.body;
+//   const query = 'UPDATE tbproductos (titulo, imagen, descripcion, precio) VALUES (?, ?, ?, ?)';
+//   db.query(query, [titulo, imagen, descripcion, precio], (error, results) => {
+//     if (error) throw error;
+//     res.send('Registro agregado correctamente.');
+//   });
+// });
+
+
+
+// POST - Actualizar producto
+// app.post('/actualizar', (req, res, next) => {
+//   const id = req.params.id;
+//   const { titulo, imagen, descripcion, precio } = req.body;
+//   // Aquí debes realizar la lógica para actualizar el producto en la base de datos
+//   // utilizando el ID y los nuevos datos del producto
+//   // Para simplificar el ejemplo, supongamos que actualizas el producto en alguna manera
+//   console.log(`Actualizando producto ${ID}: Título=${titulo}, Imagen=${imagen}, Descripcion=${descripcion}, Precio=${precio}`);
+//   res.redirect('/productos'); // Redireccionar a la lista de productos después de la actualización
+// });
+
+//delete
+app.post('/id/eliminar', (req, res) => {
   const id = req.params.id;
-  const query = 'SELECT * FROM usuarios WHERE id = ?';
-  db.query(query, [id], (error, resultado) => {
-    if (error) throw error;
-    res.json(resultado);
+  const query = 'DELETE FROM tbproductos WHERE ID = ?';
+  connection.query(query, [id], (err, result) => {
+    if (err) throw err;
+    res.redirect('/productos');
   });
 });
 
-// Agregar un nuevo registro
-app.post('usuarios', (req, res, next) => {
-  const { user, password } = req.body;
-  const query = 'INSERT INTO usuarios (user, password) VALUES (?, ?)';
-  db.query(query, [user, password], (error, results) => {
-    if (error) throw error;
-    res.send('Registro agregado correctamente.');
+app.post('/id/editar', (req, res) => {
+  const id = req.params.id;
+  const { titulo, imagen, descripcion, precio } = req.body;
+  const query = 'UPDATE tbproductos SET titulo = ?, imagen = ?, descripcion = ?, precio = ? WHERE ID = ?';
+  connection.query(query, [titulo, imagen, descripcion, precio, id], (err, result) => {
+    if (err) throw err;
+    res.redirect('/productos');
   });
 });
 

@@ -6,7 +6,6 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Mi Web' });
 });
 
-
 /* GET nosotros page. */
 router.get('/nosotros', function(req, res, next) {
   res.render('nosotros', { title: 'Nosotros' });
@@ -27,4 +26,11 @@ router.post('reg', (req, res, next) => {
   const { user, password } = req.body;
   console.log("dsdsd")
 });
+
+router.post('delete'), (req, res, next) => {
+  const {ID, titulo, imagen, descripcion, precio } = req.body;
+  console.log("eliminado")
+}
+
+
 module.exports = router;
